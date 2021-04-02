@@ -1,9 +1,9 @@
 import express from 'express'
 import { check } from 'express-validator'
 import passport from 'passport'
-const router = express.Router()
 import {getUsers, login, register, getUserByToken} from '../controllers/userController.js'
 import upload from '../middleware/upload.js'
+const router = express.Router()
 
 
 router.route('/').get(passport.authenticate('jwt', { session: false }), getUsers)

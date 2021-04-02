@@ -1,12 +1,40 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import './App.css'
+import {Container} from 'react-bootstrap'
+import {Route} from 'react-router-dom'
+import {getLoggedUser} from './actions/authActions'
+import Header from './components/main/Header'
+import Login from './components/auth/Login'
+import MainPage from './components/main/MainPage'
+import Register from './components/auth/Register'
+import PrivateRoute from './components/main/PrivateRoute'
+import Dashboard from './components/calendar/Dashboard'
 
 const App = () => {
-  return (
-    <div>
 
-    </div>
-  )
+    const dispatch = useDispatch()
+    const auth = useSelector(state => state.auth)
+
+    useEffect(() => {
+        if (auth.token){
+            dispatch(getLoggedUser())
+        }
+    }, [dispatch])
+
+    return (
+        <>
+            <Header/>
+            <Route exact path='/' component={MainPage}/>
+            <main>
+                <Container>
+                    <Route exact path='/login' component={Login}/>
+                    <Route exact path='/register' component={Register}/>
+                    <PrivateRoute path='/dashboard' component={Dashboard}/>
+                </Container>
+            </main>
+        </>
+    )
 }
 
 export default App

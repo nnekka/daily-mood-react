@@ -13,8 +13,9 @@ export const login = async (req, res) => {
     try {
         const { email, password } = req.body
         const user = await User.findOne({ email })
+        const passwordCorrect = await bcrypt.compare(password, user.password)
 
-        if (!user || !(user.checkPassword(password))){
+        if (!user || !passwordCorrect){
             return res.status(401).json({ errors: [{ msg: 'Wrong credentials' }] })
         }
         const token = generateToken(user._id)
