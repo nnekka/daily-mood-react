@@ -60,7 +60,6 @@ const Register = ({ history }) => {
     }
 
 
-
     return (
         <Container>
             <Row className='justify-content-md-center py-4'>
