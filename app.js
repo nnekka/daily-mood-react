@@ -4,6 +4,7 @@ import cors from 'cors'
 import passport from 'passport'
 import morgan from 'morgan'
 import userRoutes from './routes/userRoutes.js'
+import uploadRoutes from './routes/uploadRoutes.js'
 import { connectToMongo } from './utils/connect.js'
 import getTokenFromRequest from './middleware/passport.js'
 
@@ -19,6 +20,7 @@ app.use(morgan('dev'))
 app.use(express.json())
 app.use('/uploads', express.static('uploads'))
 app.use('/api/users', userRoutes)
+app.use('/api/upload', uploadRoutes)
 
 
 

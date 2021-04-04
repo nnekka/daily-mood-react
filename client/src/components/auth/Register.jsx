@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
+import axios from 'axios'
 import AlertComponent from '../main/AlertComponent'
 import {register} from '../../actions/authActions'
 import { setAlert } from '../../actions/alertActions'
+
 
 
 const Register = ({ history }) => {
@@ -13,6 +15,8 @@ const Register = ({ history }) => {
     const [password, setPassword] = useState('')
     const [password1, setPassword1] = useState('')
     const [name, setName] = useState('')
+    const [image, setImage] = useState('')
+    const [uploading, setUploading] = useState(false)
 
     const auth = useSelector(state => state.auth)
     const { user } = auth
@@ -26,12 +30,36 @@ const Register = ({ history }) => {
 
     const submitHandler = (event) => {
         event.preventDefault()
+        console.log(event.target)
         if (password !== password1){
             dispatch(setAlert('Пароли не совпадают', 'danger'))
         } else {
-            dispatch(register(email, name, password))
+            dispatch(register(name, email, password, image))
         }
     }
+
+    const uploadFile = async(event) => {
+        const file = event.target.files[0]
+        const formData = new FormData()
+        formData.append('image', file)
+        setUploading(true)
+        try {
+            const config = {
+                headers: {
+                    'Content-type': 'multipart/form-data'
+                }
+            }
+            const { data } = await axios.post('/api/upload', formData, config )
+            setImage(data)
+            setUploading(false)
+        }
+        catch (e) {
+            console.error(e)
+            setUploading(false)
+        }
+    }
+
+
 
     return (
         <Container>
@@ -75,6 +103,21 @@ const Register = ({ history }) => {
                                           onChange={({target}) => setPassword1(target.value)}>
 
                             </Form.Control>
+                        </Form.Group>
+
+                        <Form.Group controlId='image'>
+                            <Form.Label>Choose avatar</Form.Label>
+                            <Form.Control type='text'
+                                          placeholder='avatar'
+                                          value={image}
+                                          onChange={({target}) => setImage(target.value)}
+                                          >
+
+                            </Form.Control>
+                            <Form.File id='image-file'
+                                       label='choose file'
+                                       custom onChange={uploadFile}
+                            ></Form.File>
                         </Form.Group>
                         <div className='text-center'>
                             <Button type='submit'>Зарегистрироваться</Button>

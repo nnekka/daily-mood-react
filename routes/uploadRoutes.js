@@ -1,14 +1,15 @@
+import express from 'express'
 import multer from 'multer'
 import moment from 'moment'
+const router = express.Router()
 
 const storage = multer.diskStorage({
-    destination(req, file, cb) {
-        cb(null, 'uploads/')
+    destination(req, file, cb){
+        cb(null, 'uploads/' )
     },
-    filename(req, file, cb) {
+    filename(req, file, cb){
         const date = moment().format('DDMMYYYY-hhmmss-SSS')
         cb(null, `${date}-${file.originalname}`)
-
     }
 })
 
@@ -24,4 +25,15 @@ const limits = {
     fileSize: 1024 * 1024 * 5
 }
 
-export default multer({ storage, fileFilter, limits })
+const upload = multer({
+    storage,
+    fileFilter,
+    limits
+})
+
+router.post('/', upload.single('image'), (req, res) => {
+    res.send(`${req.file.path}`)
+})
+
+export default router
+

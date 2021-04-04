@@ -37,7 +37,7 @@ export const login = (email, password) => async(dispatch) => {
     }
 }
 
-export const register = (name, email, password) => async(dispatch) => {
+export const register = (name, email, password, avatar) => async(dispatch) => {
     try {
         const config = {
             headers: {
@@ -45,7 +45,7 @@ export const register = (name, email, password) => async(dispatch) => {
             }
         }
 
-        const { data } = await axios.post('/api/users', { name, email, password }, config)
+        const { data } = await axios.post('/api/users', { name, email, password, avatar }, config)
 
         dispatch({
             type: constants.LOGIN_REGISTER_SUCCESS,

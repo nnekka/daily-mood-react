@@ -32,7 +32,7 @@ export const register = async (req, res) => {
         return res.status(400).json({errors: errors.array()})
     }
     try {
-        const { name, email, password } = req.body
+        const { name, email, password, avatar } = req.body
 
         const existUser = await User.findOne({ email })
 
@@ -46,7 +46,7 @@ export const register = async (req, res) => {
             name,
             email,
             password: passwordHash,
-            avatar: req.file ? req.file.path : ''
+            avatar
         })
         await user.save()
         const token = generateToken(user._id)
