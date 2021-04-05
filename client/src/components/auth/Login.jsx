@@ -17,7 +17,7 @@ const Login = ({ history }) => {
         if (user.name){
             history.push('/dashboard')
         }
-    }, [user.name, history])
+    }, [user, history])
 
 
     const submitHandler = (event) => {

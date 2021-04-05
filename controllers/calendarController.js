@@ -35,14 +35,21 @@ export const getCalendarById = async (req, res) => {
 export const createCalendar = async (req, res) => {
     try {
         const user = await User.findById(req.user.id)
-        const existCalendar = await Calendar.findOne({title: req.body.title, user: req.user.id})
+        const existCalendar = await Calendar.findOne({
+            title: req.body.title,
+            user: req.user.id,
+            year: req.body.year
+
+        })
         if (existCalendar) {
             return res.status(400).json({errors: [{msg: 'Календарь с таким название уже существует'}]})
         }
 
         const calendar = new Calendar({
             title: req.body.title,
+            year: req.body.year,
             description: req.body.description,
+            legendType: req.body.legendType,
             user: user.id
         })
 
@@ -66,13 +73,13 @@ export const addLegend = async (req, res) => {
             return res.status(404).json({errors: [{ msg: 'Calendar not found'}] })
         }
         const existLegendColor = calendar.legends.find(x => x.color === color)
-        if (existLegendColor){
+        if (existLegendColor && existLegendColor !== 'No color'){
             return res.status(400).json({errors: [{ msg: 'Color is already exists'}] })
         }
 
-        if (!(color && !imageSrc)){
-            return res.status(400).json({ errors: [{ msg: 'Выберите цвет или картинку!'}] })
-        }
+        // if (!(color && !imageSrc)){
+        //     return res.status(400).json({ errors: [{ msg: 'Выберите цвет или картинку!'}] })
+        // }
         const legend = {
             color,
             text,

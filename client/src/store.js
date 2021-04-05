@@ -3,10 +3,12 @@ import thunk from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import {alertReducer} from './reducers/alertReducer'
 import {authReducer} from './reducers/authReducer'
+import {rootCalendarReducer} from './reducers/rootCalendarReducer'
 
 const reducer = combineReducers({
     alerts: alertReducer,
     auth: authReducer,
+    rootCalendar: rootCalendarReducer
 })
 
 const initState = {}

@@ -10,7 +10,7 @@ const Header = () => {
     const dispatch = useDispatch()
 
     const auth = useSelector(state => state.auth)
-    const { user } = auth
+    const {user} = auth
 
     const logOut = () => {
         dispatch(logout())
@@ -30,6 +30,8 @@ const Header = () => {
 
                                 ? <>
                                     <LinkContainer to='/dashboard'><Nav.Link>Мои календари</Nav.Link></LinkContainer>
+                                    <LinkContainer to='/create-calendar'><Nav.Link>Создать
+                                        календарь</Nav.Link></LinkContainer>
                                     <NavDropdown title={user.name}>
                                         <LinkContainer to={`/user/${user._id}`}><NavDropdown.Item>Profile</NavDropdown.Item></LinkContainer>
                                         <NavDropdown.Item onClick={logOut}>Log out</NavDropdown.Item>
@@ -46,7 +48,7 @@ const Header = () => {
             </Navbar>
 
         </header>
-   )
+    )
 }
 
 export default Header

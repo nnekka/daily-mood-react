@@ -15,12 +15,14 @@ const calendarSchema = new mongoose.Schema({
     ],
     legends: [
         {
-            color: String,
+            color: { type: String, default: 'No color' },
             text: String,
-            imageSrc: String,
+            imageSrc: { type: String, default: 'No image' }
         }
     ],
-    description: String
+    description: String,
+    year: { type: Number, required: true},
+    legendType: { type: String, required: true }
 })
 
 const Calendar = mongoose.model('Calendar', calendarSchema)

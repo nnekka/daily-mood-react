@@ -10,6 +10,9 @@ import MainPage from './components/main/MainPage'
 import Register from './components/auth/Register'
 import PrivateRoute from './components/main/PrivateRoute'
 import Dashboard from './components/calendar/Dashboard'
+import CreateCalendar from './components/calendar/CreateCalendar'
+import AddLegends from './components/calendar/AddLegends'
+import Calendar from './components/calendar/Calendar'
 
 const App = () => {
 
@@ -31,6 +34,9 @@ const App = () => {
                     <Route exact path='/login' component={Login}/>
                     <Route exact path='/register' component={Register}/>
                     <PrivateRoute path='/dashboard' component={Dashboard}/>
+                    <PrivateRoute path='/create-calendar' component={CreateCalendar}/>
+                    <PrivateRoute path='/calendar/:id/add-legends' component={AddLegends}/>
+                    <PrivateRoute path='/calendar/:id' component={Calendar}/>
                 </Container>
             </main>
         </>

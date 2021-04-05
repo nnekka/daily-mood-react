@@ -8,6 +8,10 @@ main {
   min-height: 100vh;
 }
 
+h1 {
+  padding: 10px;
+}
+
 .main-page {
   position: relative;
   background: url('./img/fon1.jpg') no-repeat center center/cover;
@@ -36,3 +40,15 @@ main {
   width: 700px;
 }
 
+.instruments {
+  padding: 20px;
+
+}
+.instruments-item {
+  padding: 7px;
+}
+#image-cell {
+  width: 30px;
+  height: 30px;
+  border: 1px solid grey;
+}
