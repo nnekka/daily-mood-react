@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react'
-import {useSelector, useDispatch} from 'react-redux'
+import React, {useState} from 'react'
+import {useDispatch} from 'react-redux'
 import {Button, Col, Form, Row} from 'react-bootstrap'
 import AlertComponent from '../main/AlertComponent'
 import Loader from '../main/Loader'
@@ -11,7 +11,7 @@ const AddColorLegend = ({history, loading, calendar, calendarId}) => {
     const [color, setColor] = useState('')
     const [text, setText] = useState('')
 
-    const colors = ['', 'red', 'blue', 'green', 'black', 'yellow', 'pink']
+    const colors = ['', 'red', 'blue', 'green', 'black', 'yellow', 'teal', 'silver', 'purple', 'navy', 'maroon', 'fuchsia']
 
     const submitHandler = (e) => {
         e.preventDefault()

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
+import { useDispatch } from 'react-redux'
 import {Col, Image, Row} from 'react-bootstrap'
 import $ from 'jquery'
 import {setLegend} from '../../actions/colorImageActions'

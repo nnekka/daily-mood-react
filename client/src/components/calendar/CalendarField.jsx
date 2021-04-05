@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import AlertComponent from '../main/AlertComponent'
-import {addNewDay} from '../../actions/rootCalendarActions'
+import {addNewDay, deleteDay} from '../../actions/rootCalendarActions'
+import {setAlert} from '../../actions/alertActions'
 
 const CalendarField = ({ calendar, calendarID }) => {
 
@@ -12,7 +13,19 @@ const CalendarField = ({ calendar, calendarID }) => {
     const { legend } = colorImage
 
     const setColor = (day, month) => {
-        dispatch(addNewDay(day, month, legend, calendarID))
+        if (day > 0 && month > 0) {
+            if (legend.slice(0, 3) !== 'btn'){
+                dispatch(addNewDay(day, month, legend, calendarID))
+            } else {
+                const dayToDelete = calendar.days.find(p => p.day === day && p.month === month)
+                dispatch(deleteDay(calendarID, dayToDelete._id))
+            }
+
+
+        } else {
+            dispatch(setAlert('Недопустимое дейтвие', 'danger'))
+        }
+
     }
 
     return (

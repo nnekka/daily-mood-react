@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {getCalendarByID} from '../../actions/rootCalendarActions'
 import Loader from '../main/Loader'
@@ -7,7 +7,7 @@ import AddColorLegend from './AddColorLegend'
 import AddImageLegend from './AddImageLegend'
 import {constants} from '../../constants'
 
-const AddLegends = ({match}) => {
+const AddLegends = ({match, history}) => {
 
     const calendarID = match.params.id
     const dispatch = useDispatch()
@@ -28,9 +28,19 @@ const AddLegends = ({match}) => {
             <AlertComponent/>
             {loading ? <Loader/> :
                 calendar.legendType === 'цветная'
-                    ? <AddColorLegend loading={loading} calendar={calendar} calendarId={calendarID}/>
+                    ? <AddColorLegend
+                        loading={loading}
+                        calendar={calendar}
+                        calendarId={calendarID}
+                        history={history}
+                    />
                     : calendar.legendType === 'с картинками'
-                        ? <AddImageLegend loading={loading} calendar={calendar} id={calendarID}/>
+                        ? <AddImageLegend
+                                loading={loading}
+                                calendar={calendar}
+                                id={calendarID}
+                                history={history}
+                            />
                         : <>Все плохо</>
 
             }

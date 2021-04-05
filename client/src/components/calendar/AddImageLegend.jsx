@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react'
-import {useSelector, useDispatch} from 'react-redux'
+import React, {useState} from 'react'
+import {useDispatch} from 'react-redux'
 import {Button, Col, Form, Image, Row} from 'react-bootstrap'
 import AlertComponent from '../main/AlertComponent'
 import axios from 'axios/index'

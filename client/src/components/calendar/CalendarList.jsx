@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react'
-import {useSelector, useDispatch} from 'react-redux'
+import React from 'react'
+import {useDispatch} from 'react-redux'
 import {Button, Table} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import {deleteCalendarById} from '../../actions/rootCalendarActions'
@@ -48,8 +48,10 @@ const CalendarList = ({calendars, history}) => {
                                 : `/calendar/${calendar._id}`}> {calendar.title}
                             </Link>
                         </td>
-                        <td width='30%' className='text-left' title={`${calendar.description}`}>
-                            {calendar.description.slice(0, 30) + '...'}
+                        <td width='25%' className='text-left' title={`${calendar.description}`}>
+                            {calendar.description.length < 30
+                                ? calendar.description
+                                : calendar.description.slice(0, 30) + '...'}
                         </td>
                         <td width='10%' className='text-center'>
                             {calendar.year}
@@ -62,7 +64,7 @@ const CalendarList = ({calendars, history}) => {
                             <Button
                                 className='btn-light'
                                 onClick={() => history.push(`/add-legends/${calendar._id}`)}>
-                                Add legends
+                                <i className='fas fa-edit'></i>
                             </Button>
                         </td>
                         <td width='10%' className='text-center'>

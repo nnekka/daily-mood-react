@@ -267,3 +267,35 @@ export const addNewDay = (day, month, legendId, id) => async(dispatch, getState)
         })
     }
 }
+
+export const deleteDay = (calendarId, dayId) => async(dispatch, getState) => {
+    try {
+        const {auth: { token }} = getState()
+        const config = {
+            headers: {
+                Authorization: token,
+            }
+        }
+
+        await axios.delete(`/api/calendars/${calendarId}/day/${dayId}`, config)
+
+        dispatch({
+            type: constants.DELETE_SUCCESS
+        })
+    }
+
+    catch (e) {
+        const errors = e.response.data.errors
+        console.log(e.response)
+        if (errors){
+            errors.forEach(e => dispatch(setAlert(e.msg, 'danger')))
+        }
+
+        dispatch({
+            type: constants.FAIL,
+            payload: e.response && e.response.data.msg
+                ? e.response.data.msg
+                : e.message
+        })
+    }
+}
