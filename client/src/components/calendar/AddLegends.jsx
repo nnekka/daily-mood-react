@@ -15,8 +15,8 @@ const AddLegends = ({match}) => {
     const {loading, calendar, error, success} = rootCalendar
 
     useEffect(() => {
-        if (success){
-            dispatch({ type: constants.RESET })
+        if (success) {
+            dispatch({type: constants.RESET})
         } else {
             dispatch(getCalendarByID(calendarID))
         }
@@ -30,7 +30,7 @@ const AddLegends = ({match}) => {
                 calendar.legendType === 'цветная'
                     ? <AddColorLegend loading={loading} calendar={calendar} calendarId={calendarID}/>
                     : calendar.legendType === 'с картинками'
-                        ? <AddImageLegend loading={loading} calendar={calendar} id={calendarID} />
+                        ? <AddImageLegend loading={loading} calendar={calendar} id={calendarID}/>
                         : <>Все плохо</>
 
             }

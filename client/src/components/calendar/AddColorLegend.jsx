@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, {useEffect, useState} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
 import {Button, Col, Form, Row} from 'react-bootstrap'
 import AlertComponent from '../main/AlertComponent'
 import Loader from '../main/Loader'
 import {addNewColorLegend, deleteLegend} from '../../actions/rootCalendarActions'
 
-const AddColorLegend = ({ history, loading, calendar, calendarId }) => {
+const AddColorLegend = ({history, loading, calendar, calendarId}) => {
 
     const dispatch = useDispatch()
     const [color, setColor] = useState('')
@@ -66,7 +66,7 @@ const AddColorLegend = ({ history, loading, calendar, calendarId }) => {
                     !calendar.legends
                         ? <p>No legends</p>
                         : calendar.legends.map(legend =>
-                            <Row key={legend._id} >
+                            <Row key={legend._id}>
                                 <Col xs={1}>
                                     <div style={{width: '20px', height: '20px', backgroundColor: `${legend.color}`}}>
                                     </div>

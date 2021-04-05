@@ -15,6 +15,7 @@ const Dashboard = ({history}) => {
 
 
     useEffect(() => {
+        dispatch({ type: constants.CALENDAR_RESET })
         if (success){
             dispatch({ type: constants.RESET })
         } else {

@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, {useEffect, useState} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
 import {Button, Col, Form, Image, Row} from 'react-bootstrap'
 import AlertComponent from '../main/AlertComponent'
 import axios from 'axios/index'
 import Loader from '../main/Loader'
 import {addNewImageLegend, deleteLegend} from '../../actions/rootCalendarActions'
 
-const AddImageLegend = ({ history, calendar, loading, id}) => {
+const AddImageLegend = ({history, calendar, loading, id}) => {
 
     const dispatch = useDispatch()
     const [image, setImage] = useState('')
     const [text, setText] = useState('')
     const [uploading, setUploading] = useState(false)
 
-    const uploadFile = async(event) => {
+    // Получаю путь к файлу, загруженному на сервер
+    const uploadFile = async (event) => {
         const file = event.target.files[0]
         const formData = new FormData()
         formData.append('image', file)
@@ -24,7 +25,7 @@ const AddImageLegend = ({ history, calendar, loading, id}) => {
                     'Content-type': 'multipart/form-data'
                 }
             }
-            const { data } = await axios.post('/api/upload', formData, config )
+            const {data} = await axios.post('/api/upload', formData, config)
             setImage(data)
             setUploading(false)
         }
@@ -99,13 +100,12 @@ const AddImageLegend = ({ history, calendar, loading, id}) => {
                                     <Button
                                         className='btn-sm'
                                         onClick={() => deleteLegendHandler(legend._id)}
-
-                                    ><i className='fas fa-trash'></i>
+                                    >
+                                        <i className='fas fa-trash'></i>
                                     </Button>
                                 </Col>
                             </Row>
                         )}
-
             </Col>
         </Row>
     )

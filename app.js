@@ -19,10 +19,11 @@ getTokenFromRequest(passport) // passport
 app.use(cors())
 app.use(morgan('dev'))
 app.use(express.json())
-app.use('/uploads', express.static('uploads'))
+
 app.use('/api/users', userRoutes)
 app.use('/api/upload', uploadRoutes)
 app.use('/api/calendars', calendarRoutes)
+app.use('/uploads', express.static('uploads'))
 
 
 

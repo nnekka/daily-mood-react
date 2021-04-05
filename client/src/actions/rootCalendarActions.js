@@ -234,3 +234,36 @@ export const addNewColorLegend = (color, text, id) => async(dispatch, getState) 
     }
 }
 
+export const addNewDay = (day, month, legendId, id) => async(dispatch, getState) => {
+    try {
+        const {auth: { token }} = getState()
+        const config = {
+            headers: {
+                Authorization: token,
+                'Content-type': 'application/json'
+            }
+        }
+
+        const { data } = await axios.put(`/api/calendars/${id}/day`, {day, month, legendId} ,config)
+
+        dispatch({
+            type: constants.UPDATE_CALENDAR_LEGEND_DAY_SUCCESS,
+            payload: data
+        })
+    }
+
+    catch (e) {
+        const errors = e.response.data.errors
+        console.log(e.response)
+        if (errors){
+            errors.forEach(e => dispatch(setAlert(e.msg, 'danger')))
+        }
+
+        dispatch({
+            type: constants.FAIL,
+            payload: e.response && e.response.data.msg
+                ? e.response.data.msg
+                : e.message
+        })
+    }
+}

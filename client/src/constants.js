@@ -19,5 +19,8 @@ export const constants = {
     DELETE_SUCCESS: 'DELETE_SUCCESS',
 
     RESET: 'RESET',
+    CALENDAR_RESET: 'CALENDAR_RESET',
+
+    SET_LEGEND: 'SET_LEGEND'
 
 }

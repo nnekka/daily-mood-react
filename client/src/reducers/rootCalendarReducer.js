@@ -20,6 +20,8 @@ export const rootCalendarReducer = (state = initState, action) => {
             return {...state, loading: true, success: false}
         case constants.GET_CALENDAR_BY_ID_SUCCESS:
             return {...state, loading: false, calendar: action.payload}
+        case constants.CALENDAR_RESET:
+            return {...state, calendar: {}, calendars: []}
         default:
             return state
     }

@@ -17,7 +17,7 @@ export const getCalendarsOfUser = async (req, res) => {
 export const getCalendarById = async (req, res) => {
 
     try {
-        const calendar = await Calendar.findById(req.params.id)
+        const calendar = await Calendar.findById(req.params.id).populate('days')
         if (!calendar) {
             return res.status(404).json({errors: [{msg: 'Calendar not found'}]})
         }
@@ -134,18 +134,16 @@ export const deleteLegend = async (req, res) => {
 
 export const addDay = async (req, res) => {
     try {
-        const { day, month, color, imageSrc } = req.body
+        const { day, month, legendId } = req.body
 
         const calendar = await Calendar.findById(req.params.id)
 
         if (!calendar){
             return res.status(404).json({errors: [{ msg: 'Calendar not found'}] })
         }
-        const legend = color !== ''
-            ? calendar.legends.find(x => x.color === color)
-            : imageSrc !== ''
-                ? calendar.legends.find(x => x.imageSrc === imageSrc)
-                : null
+
+        const legend = calendar.legends.find(x => x.id.toString() === legendId)
+
 
         if (!legend){
             return res.status(404).json({errors: [{ msg: 'Color/image must be chosen for this action'}] })

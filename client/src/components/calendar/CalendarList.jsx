@@ -16,8 +16,8 @@ const CalendarList = ({calendars, history}) => {
         <>
             <h1>Мои календари</h1>
             <Table responsive bordered hover className='table-sm'>
-                <thead >
-                <tr >
+                <thead>
+                <tr>
                     <th className='text-center'>
                         Название календаря
                     </th>
@@ -44,7 +44,7 @@ const CalendarList = ({calendars, history}) => {
                     <tr key={calendar._id}>
                         <td width='20%' className='text-left'>
                             <Link to={calendar.legends.length === 0
-                                ? `/calendar/${calendar._id}/add-legends`
+                                ? `/add-legends/${calendar._id}`
                                 : `/calendar/${calendar._id}`}> {calendar.title}
                             </Link>
                         </td>
@@ -61,7 +61,7 @@ const CalendarList = ({calendars, history}) => {
                         <td>
                             <Button
                                 className='btn-light'
-                                onClick={() => history.push(`/calendar/${calendar._id}/add-legends`)}>
+                                onClick={() => history.push(`/add-legends/${calendar._id}`)}>
                                 Add legends
                             </Button>
                         </td>

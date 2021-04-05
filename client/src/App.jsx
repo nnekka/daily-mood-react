@@ -35,8 +35,10 @@ const App = () => {
                     <Route exact path='/register' component={Register}/>
                     <PrivateRoute path='/dashboard' component={Dashboard}/>
                     <PrivateRoute path='/create-calendar' component={CreateCalendar}/>
-                    <PrivateRoute path='/calendar/:id/add-legends' component={AddLegends}/>
+                    <PrivateRoute path='/add-legends/:id' component={AddLegends}/>
                     <PrivateRoute path='/calendar/:id' component={Calendar}/>
+
+
                 </Container>
             </main>
         </>

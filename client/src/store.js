@@ -4,11 +4,13 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import {alertReducer} from './reducers/alertReducer'
 import {authReducer} from './reducers/authReducer'
 import {rootCalendarReducer} from './reducers/rootCalendarReducer'
+import {colorImageReducer} from './reducers/colorImageReducer'
 
 const reducer = combineReducers({
     alerts: alertReducer,
     auth: authReducer,
-    rootCalendar: rootCalendarReducer
+    rootCalendar: rootCalendarReducer,
+    colorImage: colorImageReducer
 })
 
 const initState = {}
