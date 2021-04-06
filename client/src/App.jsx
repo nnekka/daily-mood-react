@@ -13,6 +13,7 @@ import Dashboard from './components/calendar/Dashboard'
 import CreateCalendar from './components/calendar/CreateCalendar'
 import AddLegends from './components/calendar/AddLegends'
 import Calendar from './components/calendar/Calendar'
+import Statistics from './components/calendar/Statistics'
 
 const App = () => {
 
@@ -33,12 +34,11 @@ const App = () => {
                 <Container>
                     <Route exact path='/login' component={Login}/>
                     <Route exact path='/register' component={Register}/>
-                    <PrivateRoute path='/dashboard' component={Dashboard}/>
-                    <PrivateRoute path='/create-calendar' component={CreateCalendar}/>
-                    <PrivateRoute path='/add-legends/:id' component={AddLegends}/>
-                    <PrivateRoute path='/calendar/:id' component={Calendar}/>
-
-
+                    <PrivateRoute exact path='/dashboard' component={Dashboard}/>
+                    <PrivateRoute exact path='/create-calendar' component={CreateCalendar}/>
+                    <PrivateRoute exact path='/calendar/:id/add-legends' component={AddLegends}/>
+                    <PrivateRoute exact path='/calendar/:id' component={Calendar}/>
+                    <PrivateRoute exact path='/calendar/:id/statistics' component={Statistics}/>
                 </Container>
             </main>
         </>

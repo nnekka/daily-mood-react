@@ -8,15 +8,12 @@ import CalendarField from './CalendarField'
 import Legend from './Legend'
 import $ from 'jquery'
 
-const Calendar = ({match}) => {
+const Calendar = ({ match }) => {
 
     const calendarID = match.params.id
     const dispatch = useDispatch()
     const rootCalendar = useSelector(state => state.rootCalendar)
     const {loading, calendar, success} = rootCalendar
-
-    const days = calendar.days
-    console.log(days)
 
     useEffect(() => {
         if (success) {

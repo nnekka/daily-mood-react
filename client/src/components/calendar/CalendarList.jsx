@@ -44,7 +44,7 @@ const CalendarList = ({calendars, history}) => {
                     <tr key={calendar._id}>
                         <td width='20%' className='text-left'>
                             <Link to={calendar.legends.length === 0
-                                ? `/add-legends/${calendar._id}`
+                                ? `/calendar/${calendar._id}/add-legends`
                                 : `/calendar/${calendar._id}`}> {calendar.title}
                             </Link>
                         </td>
@@ -56,14 +56,19 @@ const CalendarList = ({calendars, history}) => {
                         <td width='10%' className='text-center'>
                             {calendar.year}
                         </td>
-                        <td className='text-left'>
-                            Stat
+                        <td>
+                            <Button
+                                className='btn-light'
+                                onClick={() => history.push(`/calendar/${calendar._id}/statistics`)}
+                            >
+                                <i className='fas fa-eye'></i>
+                            </Button>
                         </td>
                         <td>{calendar.legendType}</td>
                         <td>
                             <Button
                                 className='btn-light'
-                                onClick={() => history.push(`/add-legends/${calendar._id}`)}>
+                                onClick={() => history.push(`/calendar/${calendar._id}/add-legends`)}>
                                 <i className='fas fa-edit'></i>
                             </Button>
                         </td>
