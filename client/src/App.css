@@ -67,4 +67,12 @@ h1 {
   width: 25px;
   height: 25px;
   border: 1px solid #775d4d;
+
+}
+/*класс который отвечает за недоступные ячейки на календаре*/
+.disabled-div {
+  width: 25px;
+  height: 25px;
+  background-color: bisque;
+
 }

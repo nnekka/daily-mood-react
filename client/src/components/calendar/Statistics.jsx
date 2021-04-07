@@ -59,7 +59,7 @@ const Statistics = ({match}) => {
                                     {days.length}
                                 </Col>
                             </Row>
-                            {legends.map((legend, index) =>
+                            {legends.map((legend) =>
                                 <Row key={legend._id}>
 
                                     <Col md={4}>

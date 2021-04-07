@@ -1,6 +1,6 @@
 import React from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import {Nav, Navbar, NavDropdown} from 'react-bootstrap'
+import {Image, Nav, Navbar, NavDropdown} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 import {logout} from '../../actions/authActions'
 
@@ -29,13 +29,21 @@ const Header = () => {
                             user.name
 
                                 ? <>
-                                    <LinkContainer to='/dashboard'><Nav.Link>Мои календари</Nav.Link></LinkContainer>
-                                    <LinkContainer to='/create-calendar'><Nav.Link>Создать
-                                        календарь</Nav.Link></LinkContainer>
+                                    <LinkContainer to='/dashboard'>
+                                        <Nav.Link>
+                                            Мои календари
+                                        </Nav.Link>
+                                    </LinkContainer>
+                                    <LinkContainer to='/create-calendar'>
+                                        <Nav.Link>
+                                            Создать календарь
+                                        </Nav.Link>
+                                    </LinkContainer>
                                     <NavDropdown title={user.name}>
                                         <LinkContainer to={`/user/${user._id}`}><NavDropdown.Item>Profile</NavDropdown.Item></LinkContainer>
                                         <NavDropdown.Item onClick={logOut}>Log out</NavDropdown.Item>
                                     </NavDropdown>
+                                    <Nav.Link><Image src={user.avatar} alt='avatar' width='50px' height='40px'/></Nav.Link>
                                 </>
                                 : <>
                                     <LinkContainer to='/login'><Nav.Link>Sign in</Nav.Link></LinkContainer>

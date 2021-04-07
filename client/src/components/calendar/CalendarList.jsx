@@ -9,13 +9,15 @@ const CalendarList = ({calendars, history}) => {
     const dispatch = useDispatch()
 
     const deleteHandler = (id) => {
-        dispatch(deleteCalendarById(id))
+        if (window.confirm('Ты точно хочешь удалить календарь?')){
+            dispatch(deleteCalendarById(id))
+        }
     }
 
     return (
         <>
             <h1>Мои календари</h1>
-            <Table responsive bordered hover className='table-sm'>
+            <Table responsive bordered className='table-sm'>
                 <thead>
                 <tr>
                     <th className='text-center'>
@@ -60,6 +62,7 @@ const CalendarList = ({calendars, history}) => {
                             <Button
                                 className='btn-light'
                                 onClick={() => history.push(`/calendar/${calendar._id}/statistics`)}
+                                disabled={calendar.days.length < 2}
                             >
                                 <i className='fas fa-eye'></i>
                             </Button>

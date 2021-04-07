@@ -32,8 +32,8 @@ const Legend = ({ calendar }) => {
                                 <Image
                                     id={`${legend._id}`}
                                     src={`http://localhost:3333/${legend.imageSrc}`}
-                                    width='40px'
-                                    height='40px'
+                                    width='60px'
+                                    height='60px'
                                 />
                             </button>
                         }
@@ -51,8 +51,8 @@ const Legend = ({ calendar }) => {
                             onClick={(e) => selectColor(e)}
                             id={`btn-${calendar.legends.length}`}
                             src={`http://localhost:3333/uploads/delete.jpg`}
-                            width='40px'
-                            height='40px'
+                            width='60px'
+                            height='60px'
                         />
                     </button>
                 </Col>

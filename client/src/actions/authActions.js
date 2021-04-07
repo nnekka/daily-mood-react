@@ -115,4 +115,5 @@ export const logout = () => dispatch => {
 
     localStorage.removeItem('token')
     dispatch({ type: constants.LOGOUT })
+    dispatch({ type: constants.CALENDAR_RESET })
 }
