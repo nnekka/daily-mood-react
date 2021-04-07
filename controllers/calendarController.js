@@ -99,11 +99,14 @@ export const addLegend = async (req, res) => {
 export const deleteCalendar = async (req, res) => {
     try {
         const calendar = await Calendar.findById(req.params.id)
+
         if (!calendar){
             return res.status(404).json({errors: [{ msg: 'Calendar not found'}] })
         }
 
+        await Day.deleteMany({ calendar: calendar._id})
         await calendar.remove()
+
         res.json('Calendar removed!')
     }
     catch (e) {
@@ -179,8 +182,12 @@ export const deleteDay = async (req, res) => {
         if (!calendar){
             return res.status(404).json({errors: [{ msg: 'Calendar not found'}] })
         }
-
+        const day = await Day.findById(req.params.day_id)
+        if (!day){
+            return res.status(404).json({errors: [{ msg: 'Day not found'}] })
+        }
         calendar.days = calendar.days.filter(x => x._id.toString() !== req.params.day_id)
+        await day.remove()
         await calendar.save()
         res.json(calendar)
 
