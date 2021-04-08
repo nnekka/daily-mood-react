@@ -117,3 +117,38 @@ export const logout = () => dispatch => {
     dispatch({ type: constants.LOGOUT })
     dispatch({ type: constants.CALENDAR_RESET })
 }
+
+
+export const updateUserProfile = (name, image, userID) => async(dispatch, getState) => {
+    try {
+        const {auth: {token}} = getState()
+
+        const config = {
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: token
+            }
+        }
+
+        const { data } = await axios.put(`/api/users/${userID}`, {name, image}, config)
+
+        dispatch({
+            type: constants.UPDATE_USER_SUCCESS
+        })
+    }
+    catch (e) {
+
+        const errors = e.response.data.errors
+        console.log(e.response)
+        if (errors){
+            errors.forEach(e => dispatch(setAlert(e.msg, 'danger')))
+        }
+
+        dispatch({
+            type: constants.FAIL,
+            payload: e.response && e.response.data.msg
+                ? e.response.data.msg
+                : e.message
+        })
+    }
+}

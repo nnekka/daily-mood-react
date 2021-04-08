@@ -40,10 +40,14 @@ const Header = () => {
                                         </Nav.Link>
                                     </LinkContainer>
                                     <NavDropdown title={user.name}>
-                                        <LinkContainer to={`/user/${user._id}`}><NavDropdown.Item>Profile</NavDropdown.Item></LinkContainer>
+                                        <LinkContainer to={`/user/${user._id}`}>
+                                            <NavDropdown.Item>
+                                                Profile
+                                            </NavDropdown.Item>
+                                        </LinkContainer>
                                         <NavDropdown.Item onClick={logOut}>Log out</NavDropdown.Item>
                                     </NavDropdown>
-                                    <Nav.Link><Image src={user.avatar} alt='avatar' width='50px' height='40px'/></Nav.Link>
+
                                 </>
                                 : <>
                                     <LinkContainer to='/login'><Nav.Link>Sign in</Nav.Link></LinkContainer>
@@ -53,6 +57,7 @@ const Header = () => {
                     </Nav>
 
                 </Navbar.Collapse>
+                <Nav.Link><Image src={`http://localhost:3333/${user.avatar}`} alt='avatar' width='70px' height='50px'/></Nav.Link>
             </Navbar>
 
         </header>

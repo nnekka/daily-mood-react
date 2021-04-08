@@ -62,7 +62,7 @@ const CalendarList = ({calendars, history}) => {
                             <Button
                                 className='btn-light'
                                 onClick={() => history.push(`/calendar/${calendar._id}/statistics`)}
-                                disabled={calendar.days.length < 2}
+                                disabled={calendar.days.length < 4}
                             >
                                 <i className='fas fa-eye'></i>
                             </Button>

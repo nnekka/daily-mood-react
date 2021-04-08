@@ -18,6 +18,10 @@ export const authReducer = ( state = initState, action ) => {
             return { ... state, token: null, user: {}}
         case constants.GET_LOGGED_USER_SUCCESS:
             return { ...state, loading: false, user: action.payload }
+        case constants.UPDATE_USER_SUCCESS:
+            return { ...state, loading: false, success: true }
+        case constants.UPDATE_USER_RESET:
+            return {...state, loading: true, success: false }
         default:
             return state
     }

@@ -77,9 +77,6 @@ export const addLegend = async (req, res) => {
             return res.status(400).json({errors: [{ msg: 'Color is already exists'}] })
         }
 
-        // if (!(color && !imageSrc)){
-        //     return res.status(400).json({ errors: [{ msg: 'Выберите цвет или картинку!'}] })
-        // }
         const legend = {
             color,
             text,
@@ -138,16 +135,11 @@ export const deleteLegend = async (req, res) => {
 export const addDay = async (req, res) => {
     try {
         const { day, month, legendId } = req.body
-
         const calendar = await Calendar.findById(req.params.id)
-
         if (!calendar){
             return res.status(404).json({errors: [{ msg: 'Calendar not found'}] })
         }
-
         const legend = calendar.legends.find(x => x.id.toString() === legendId)
-
-
         if (!legend){
             return res.status(404).json({errors: [{ msg: 'Color/image must be chosen for this action'}] })
         }

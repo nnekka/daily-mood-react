@@ -14,6 +14,8 @@ import CreateCalendar from './components/calendar/CreateCalendar'
 import AddLegends from './components/calendar/AddLegends'
 import Calendar from './components/calendar/Calendar'
 import Statistics from './components/calendar/Statistics'
+import UserProfile from './components/auth/UserProfile'
+import {constants} from './constants'
 
 const App = () => {
 
@@ -22,9 +24,13 @@ const App = () => {
 
     useEffect(() => {
         if (auth.token){
-            dispatch(getLoggedUser())
+            if (auth.success){
+               dispatch({ type: constants.UPDATE_USER_RESET })
+            } else {
+                dispatch(getLoggedUser())
+            }
         }
-    }, [dispatch])
+    }, [dispatch, auth.success])
 
     return (
         <>
@@ -39,6 +45,7 @@ const App = () => {
                     <PrivateRoute exact path='/calendar/:id/add-legends' component={AddLegends}/>
                     <PrivateRoute exact path='/calendar/:id' component={Calendar}/>
                     <PrivateRoute exact path='/calendar/:id/statistics' component={Statistics}/>
+                    <PrivateRoute exact path='/user/:id' component={UserProfile}/>
                 </Container>
             </main>
         </>

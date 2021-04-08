@@ -13,13 +13,14 @@ export const login = async (req, res) => {
     try {
         const { email, password } = req.body
         const user = await User.findOne({ email })
-        const passwordCorrect = await bcrypt.compare(password, user.password)
-
+        const passwordCorrect = user
+            ? await bcrypt.compare(password, user.password)
+            : false
         if (!user || !passwordCorrect){
             return res.status(401).json({ errors: [{ msg: 'Wrong credentials' }] })
         }
         const token = generateToken(user._id)
-        res.json({ token: `Bearer ${token}` })
+        res.status(200).json({ token: `Bearer ${token}` })
     }
     catch (e) {
       errorHandler(res, e)
@@ -65,6 +66,23 @@ export const getUserByToken = async(req, res) => {
             return res.status(404).json({ errors: [{ msg: 'User not found'}] })
         }
         res.json(user)
+    }
+    catch (e) {
+        errorHandler(res, e)
+    }
+}
+
+export const updateUserProfile = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id)
+        if (!user) {
+            return res.status(404).json({errors: [{msg: 'User not found'}]})
+        } else {
+            user.name = req.body.name ? req.body.name : user.name
+            user.avatar = req.body.image ? req.body.image : user.image
+            const updated = await user.save()
+            res.json(updated)
+        }
     }
     catch (e) {
         errorHandler(res, e)
