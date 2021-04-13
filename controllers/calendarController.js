@@ -185,8 +185,33 @@ export const deleteDay = async (req, res) => {
 
     }
     catch (e) {
-        console.error(e.message)
-        res.status(401).send('Server error')
+        errorHandler(res, e)
     }
 }
+
+// PUT /api/calendars/:id
+// Изменить title, description, year календаря
+
+export const updateCalendar = async (req, res) => {
+
+    try {
+        const calendar = await Calendar.findById(req.params.id)
+
+        if (!calendar){
+            return res.status(404).json({errors: [{ msg: 'Calendar not found'}] })
+        }
+        calendar.title = req.body.title ? req.body.title : calendar.title
+        calendar.description = req.body.description ? req.body.description : calendar.description
+        calendar.year = req.body.year ? req.body.year : calendar.year
+
+        await calendar.save()
+
+        res.status(200).json(calendar)
+    }
+    catch (e) {
+        errorHandler(res, e)
+    }
+}
+
+
 
