@@ -299,3 +299,37 @@ export const deleteDay = (calendarId, dayId) => async(dispatch, getState) => {
         })
     }
 }
+
+export const updateCalendar = (title, description, year, calendarID) => async(dispatch, getState) => {
+    try {
+        const {auth: { token }} = getState()
+        const config = {
+            headers: {
+                Authorization: token,
+                'Content-type': 'application/json'
+            }
+        }
+
+        await axios.put(`/api/calendars/${calendarID}`, {title, description, year}, config)
+
+        dispatch({
+            type: constants.UPDATE_CALENDAR_LEGEND_DAY_SUCCESS
+        })
+    }
+
+    catch (e) {
+        const errors = e.response.data.errors
+        console.log(e.response)
+        if (errors){
+            errors.forEach(e => dispatch(setAlert(e.msg, 'danger')))
+        }
+
+        dispatch({
+            type: constants.FAIL,
+            payload: e.response && e.response.data.msg
+                ? e.response.data.msg
+                : e.message
+        })
+    }
+}
+

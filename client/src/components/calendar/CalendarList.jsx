@@ -35,10 +35,9 @@ const CalendarList = ({calendars, history}) => {
                     <th>
                         Тип легенды
                     </th>
-                    <th>
-                    </th>
-                    <th>
-                    </th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -72,7 +71,7 @@ const CalendarList = ({calendars, history}) => {
                             <Button
                                 className='btn-light'
                                 onClick={() => history.push(`/calendar/${calendar._id}/add-legends`)}>
-                                <i className='fas fa-edit'></i>
+                                add legend
                             </Button>
                         </td>
                         <td width='10%' className='text-center'>
@@ -83,7 +82,14 @@ const CalendarList = ({calendars, history}) => {
                                 <i className='fas fa-trash'></i>
                             </Button>
                         </td>
-
+                        <td width='10%' className='text-center'>
+                            <Button
+                                className='btn-light'
+                                onClick={() => history.push(`/calendar/${calendar._id}/edit`)}
+                            >
+                                <i className='fas fa-edit'></i>
+                            </Button>
+                        </td>
                     </tr>
                 )}
 

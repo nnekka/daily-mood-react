@@ -16,6 +16,7 @@ import Calendar from './components/calendar/Calendar'
 import Statistics from './components/calendar/Statistics'
 import UserProfile from './components/auth/UserProfile'
 import {constants} from './constants'
+import EditCalendar from './components/calendar/EditCalendar'
 
 const App = () => {
 
@@ -45,6 +46,7 @@ const App = () => {
                     <PrivateRoute exact path='/calendar/:id/add-legends' component={AddLegends}/>
                     <PrivateRoute exact path='/calendar/:id' component={Calendar}/>
                     <PrivateRoute exact path='/calendar/:id/statistics' component={Statistics}/>
+                    <PrivateRoute exact path='/calendar/:id/edit' component={EditCalendar}/>
                     <PrivateRoute exact path='/user/:id' component={UserProfile}/>
                 </Container>
             </main>
