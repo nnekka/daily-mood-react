@@ -11,7 +11,7 @@ export const authReducer = ( state = initState, action ) => {
 
     switch (action.type) {
         case constants.LOGIN_REGISTER_SUCCESS:
-            return { ...state, loading: false, token: action.payload }
+            return { ...state, loading: false, token: action.payload, success: true }
         case constants.FAIL:
             return { ... state, loading: false, error: action.payload }
         case constants.LOGOUT:

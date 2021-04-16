@@ -19,13 +19,13 @@ const Register = ({ history }) => {
     const [uploading, setUploading] = useState(false)
 
     const auth = useSelector(state => state.auth)
-    const { user } = auth
+    const { user, success } = auth
 
     useEffect(() => {
         if (user.name){
             history.push('/dashboard')
         }
-    }, [user, history])
+    }, [user, history, success])
 
 
     const submitHandler = (event) => {
