@@ -16,6 +16,8 @@ const Register = ({ history }) => {
     const [password1, setPassword1] = useState('')
     const [name, setName] = useState('')
     const [image, setImage] = useState('')
+    const [emailError, setEmailError] = useState('')
+    const [passwordError, setPasswordError] = useState('')
     const [uploading, setUploading] = useState(false)
 
     const auth = useSelector(state => state.auth)
@@ -81,18 +83,35 @@ const Register = ({ history }) => {
                             <Form.Control type='email'
                                           placeholder='Enter email'
                                           value={email}
-                                          onChange={({target}) => setEmail(target.value)}>
+                                          onChange={({target}) => {
+                                              setEmail(target.value)
+                                              if((/@/).test(target.value)){
+                                                  setEmailError('')
+
+                                              } else {
+                                                  setEmailError('Введите валидный email')
+                                              }
+                                          }}>
 
                             </Form.Control>
+                            {emailError && <span className='red-text'>{emailError}</span>}
                         </Form.Group>
                         <Form.Group controlId='password'>
                             <Form.Label>Password</Form.Label>
                             <Form.Control type='password'
                                           placeholder='Enter password'
                                           value={password}
-                                          onChange={({target}) => setPassword(target.value)}>
+                                          onChange={({target}) => {
+                                              setPassword(target.value)
+                                              if (target.value.length < 6) {
+                                                  setPasswordError('Пароль должен быть минимум 6 символов')
+                                              } else {
+                                                  setPasswordError('')
+                                              }
+                                          }}>
 
                             </Form.Control>
+                            {passwordError && <span className='red-text'>{passwordError}</span>}
                         </Form.Group>
                         <Form.Group controlId='password1'>
                             <Form.Label>Confirm Password</Form.Label>
