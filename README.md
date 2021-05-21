@@ -1,6 +1,7 @@
 # daily-mood-react
 
-Hey!
+## Hey!
+
 
 Let me introduce first version of my application. 
 Using calendar you can track, for example, your physical activity or mood throughout the year. You just mark each day with color or picture. 
@@ -12,4 +13,5 @@ I also wanted to try another stack for this app, for example GraphQl for backend
 
 This is 3rd version of Daily-mood. 
 -v 3
+
 
