@@ -11,7 +11,7 @@ I also wanted to try another stack for this app, for example GraphQl for backend
 
 (May, 15 I did it! Now I use Angular)
 
-This is 3rd version of Daily-mood. 
--v 3
+This is first version of Daily-mood. 
+-v 1
 
 
